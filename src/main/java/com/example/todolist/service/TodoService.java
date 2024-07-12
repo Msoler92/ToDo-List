@@ -1,8 +1,9 @@
 package com.example.todolist.service;
 
-import org.springframework.stereotype.Service;
+import com.example.todolist.dto.TodoDto;
+import java.util.List;
 
-@Service
+
 public interface TodoService {
-
+    List<TodoDto> findAll();
 }
