@@ -1,17 +1,20 @@
 package com.example.todolist.domain;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Entity
 @Data
+@AllArgsConstructor
 public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "todo_id")
     private long id;
     private String title;
     private boolean completed;
     @ManyToOne(optional = false)
-    @JoinColumn(name = "id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 }
