@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Entity
 @Data
-public class ToDo {
+public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
