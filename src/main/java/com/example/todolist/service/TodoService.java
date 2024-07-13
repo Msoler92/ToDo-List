@@ -1,9 +1,10 @@
 package com.example.todolist.service;
 
 import com.example.todolist.dto.TodoDto;
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 
 public interface TodoService {
-    List<TodoDto> findAll();
+    Page<TodoDto> findAll(Pageable pageable);
 }
