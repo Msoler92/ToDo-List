@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -17,10 +18,11 @@ import java.util.stream.IntStream;
 @Controller
 @Validated
 @RequiredArgsConstructor
+@RequestMapping("/todo")
 public class TodoController {
     private final TodoService todoService;
 
-    @GetMapping("/getAllTodo")
+    @GetMapping("/getAll")
     public String getTodoList(
             Model model,
             @RequestParam(defaultValue = "1") @Min(1) int page,
