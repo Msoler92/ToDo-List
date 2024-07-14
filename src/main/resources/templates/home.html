@@ -41,7 +41,7 @@
                             <td th:text="${todo.title}"></td>
                             <td th:text="${todo.username}"></td>
                             <td th:text="${todo.country}"></td>
-                            <td th:text="${todo.completed}"></td>
+                            <td th:text="${todo.completed} ? 'Completada' : 'No completada'"></td>
                         </tr>
                         </tbody>
                     </table>

@@ -25,7 +25,6 @@ public class TodoServiceImpl implements TodoService {
         TypeMap<Todo, TodoDto> propertyMapper = converter.createTypeMap(Todo.class, TodoDto.class);
         propertyMapper.addMappings(mapper -> mapper.map(todo -> todo.getUser().getUsername(), TodoDto::setUsername));
         propertyMapper.addMappings(mapper -> mapper.map(todo -> todo.getUser().getAddress().getCountry(), TodoDto::setCountry));
-
     }
 
     @Override
@@ -33,7 +32,7 @@ public class TodoServiceImpl implements TodoService {
         return todoRepository.findAll(TodoSpecifications.queryWithFilters(title, username), pageable).map(todo -> converter.map(todo, TodoDto.class));
     }
 
-    @Override
+    @Override //TODO Delete?
     public Page<TodoDto> findAll(Pageable pageable) {
         return todoRepository.findAll(pageable).map(todo -> converter.map(todo, TodoDto.class));
     }
