@@ -9,4 +9,5 @@ import java.util.Optional;
 
 public interface TodoService {
     Page<TodoDto> findAll(Optional<String> title, Optional<String> username, Pageable pageable);
+    Page<TodoDto> findAll(Pageable pageable);
 }

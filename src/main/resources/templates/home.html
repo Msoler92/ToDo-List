@@ -10,8 +10,19 @@
 </head>
 <body>
 <div class="container mt-4">
+    <div>
+        <form action="#" th:action="@{/todo/getAll}" method="get">
+            <input type="text" name="titleFilter" placeholder="Filter by Title"
+                   th:value="${titleFilter}"/>
+            <input type="text" name="usernameFilter" placeholder="Filter by Username"
+                   th:value="${usernameFilter}"/>
+            <button type="submit" class="btn btn-secondary">Buscar</button>
+            <a th:href="@{/todo/getAll(size=${todoPage.size}, page=${pageNumber}, sort=${currentSort})}" class="btn btn-secondary"> Limpiar </a>
+        </form>
+    </div>
+
     <div th:switch="${todoPage}">
-        <h2 th:case="null">Aún no hay tareas registradas!</h2>
+        <h2 th:case="null">No se han encontrado tareas!</h2>
         <div th:case="*">
             <h2>TODO List</h2>
             <div class="row">

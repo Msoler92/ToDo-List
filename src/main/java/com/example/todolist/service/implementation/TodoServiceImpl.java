@@ -32,4 +32,9 @@ public class TodoServiceImpl implements TodoService {
     public Page<TodoDto> findAll(Optional<String> title, Optional<String> username, Pageable pageable) {
         return todoRepository.findAll(TodoSpecifications.queryWithFilters(title, username), pageable).map(todo -> converter.map(todo, TodoDto.class));
     }
+
+    @Override
+    public Page<TodoDto> findAll(Pageable pageable) {
+        return todoRepository.findAll(pageable).map(todo -> converter.map(todo, TodoDto.class));
+    }
 }

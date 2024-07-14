@@ -29,16 +29,25 @@ public class TodoController {
             @RequestParam(defaultValue = "1") @Min(1) int page,
             @RequestParam(defaultValue = "10") @Min(1) int size,
             @RequestParam(defaultValue = "id") String sort,
-            @RequestParam(required = false) Optional<String> title,
-            @RequestParam(required = false) Optional<String> username) {
-        //TODO map sort based on DTO properties instead of Entity properties directly?
-
+            @RequestParam(required = false) String titleFilter,
+            @RequestParam(required = false) String usernameFilter
+    ) {
         Pageable pageRequest = PageRequest.of(page - 1, size, Sort.by(sort));
-        Page<TodoDto> pageResult = todoService.findAll(title, username, pageRequest);
+        Page<TodoDto> pageResult;
+        if (titleFilter != null && titleFilter.trim().isEmpty()) {
+            titleFilter = null;
+        }
+        if (usernameFilter != null && usernameFilter.trim().isEmpty()) {
+            usernameFilter = null;
+        }
+        //TODO Verify case pageresult = null for proper Thymeleaf switch display
+        pageResult = todoService.findAll(Optional.ofNullable(titleFilter), Optional.ofNullable(usernameFilter), pageRequest);
         List<Integer> pageIndex = IntStream.rangeClosed(1, pageResult.getTotalPages()).boxed().toList();
         model.addAttribute("todoPage", pageResult);
         model.addAttribute("pageNumbers", pageIndex);
         model.addAttribute("currentSort", sort);
+        model.addAttribute("titleFilter", titleFilter);
+        model.addAttribute("usernameFilter", usernameFilter);
         return "home";
     }
 
