@@ -4,6 +4,7 @@ import com.example.todolist.dto.NewTodoDto;
 import com.example.todolist.dto.TodoDto;
 import com.example.todolist.service.TodoService;
 import com.example.todolist.service.UserService;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
@@ -63,7 +64,7 @@ public class TodoController {
     }
 
     @PostMapping("/new")
-    public String postCreationForm(NewTodoDto todoDto, Model model, @RequestParam(required = false) boolean submitAnother) {
+    public String postCreationForm(@Valid NewTodoDto todoDto, Model model, @RequestParam(required = false) boolean submitAnother) {
         todoService.createTodo(todoDto);
         if(submitAnother) {
             return "redirect:/todo/new";
