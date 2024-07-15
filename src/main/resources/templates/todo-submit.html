@@ -23,7 +23,9 @@
                 <option th:value="True">Completed</option>
                 <option th:value="False">Not completed</option>
             </select>
-            <button type="submit" class="btn btn-info col-2">Afegir</button>
+            <hr>
+            <button type="submit" class="btn btn-primary col-2">Add</button>
+            <a th:href="@{/todo/getAll}" class="btn btn-secondary">Back</a>
         </form>
     </div>
 </div>

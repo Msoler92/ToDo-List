@@ -58,18 +58,16 @@ public class TodoController {
 
     @GetMapping("/new")
     public String getCreationForm(Model model) {
+        //TODO Persist username & completed selection between submissions
         model.addAttribute("userList", userService.findAll());
         model.addAttribute("newTodo", new NewTodoDto());
         return "todo-submit";
     }
 
     @PostMapping("/new")
-    public String postCreationForm(@Valid NewTodoDto todoDto, Model model, @RequestParam(required = false) boolean submitAnother) {
+    public String postCreationForm(@Valid NewTodoDto todoDto, Model model) {
         todoService.createTodo(todoDto);
-        if(submitAnother) {
-            return "redirect:/todo/new";
-        }
-        return "redirect:/todo/getAll";
+        return "redirect:/todo/new";
     }
 
 }
