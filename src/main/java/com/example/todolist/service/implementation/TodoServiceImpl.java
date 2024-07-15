@@ -1,6 +1,8 @@
 package com.example.todolist.service.implementation;
 
 import com.example.todolist.domain.Todo;
+import com.example.todolist.domain.User;
+import com.example.todolist.dto.NewTodoDto;
 import com.example.todolist.dto.TodoDto;
 import com.example.todolist.helper.TodoSpecifications;
 import com.example.todolist.repository.TodoRepository;
@@ -32,8 +34,14 @@ public class TodoServiceImpl implements TodoService {
         return todoRepository.findAll(TodoSpecifications.queryWithFilters(title, username), pageable).map(todo -> converter.map(todo, TodoDto.class));
     }
 
-    @Override //TODO Delete?
-    public Page<TodoDto> findAll(Pageable pageable) {
-        return todoRepository.findAll(pageable).map(todo -> converter.map(todo, TodoDto.class));
+    @Override
+    public TodoDto createTodo(NewTodoDto todoDto) {
+        User user = User.builder().id(todoDto.getUserId()).build();
+        return converter.map(todoRepository.save(Todo.builder()
+                .title(todoDto.getTitle())
+                .completed(todoDto.isCompleted())
+                .user(user)
+                .build()), TodoDto.class);
     }
+
 }

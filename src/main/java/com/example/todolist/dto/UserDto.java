@@ -5,8 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class NewTodoDto {
-    private long userId;
-    private String title;
-    private boolean completed;
+public class UserDto {
+    private long id;
+    private String username;
 }

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>TODO List</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container mt-4">
+    <div>
+        <form action="#" th:action="@{/todo/new}" th:object="${newTodo}" method="post" id="submitTodoForm">
+            <label for="userId">User</label>
+            <select class="form-control" th:field="*{userId}" id="userId">
+                <option th:each="user:${userList}" th:value="${user.id}" th:text="${user.username}"></option>
+            </select>
+            <label for="title">Title</label>
+            <input type="text" th:field="*{title}" id="title" placeholder="Title" class="form-control mb-4 col-4">
+            <label for="completed">Completed</label>
+            <select class="form-control" th:field="*{completed}" id="completed">
+                <option th:value="True">Completed</option>
+                <option th:value="False">Not completed</option>
+            </select>
+            <button type="submit" class="btn btn-info col-2">Afegir</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
