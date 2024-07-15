@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>TODO List</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container mt-4">
+    <div>
+        <form action="#" th:action="@{/user/signup}" th:object="${user}" method="post" id="submitTodoForm">
+            <label for="name">Full name</label>
+            <input type="text" th:field="*{name}" id="name" placeholder="Name" class="form-control mb-4 col-4">
+            <label for="username">Username</label>
+            <input type="text" th:field="*{username}" id="username" placeholder="Username" class="form-control mb-4 col-4">
+            <label for="password">Password</label>
+            <input type="text" th:field="*{password}" id="password" placeholder="Password" class="form-control mb-4 col-4">
+            <hr>
+            <label for="street">Street</label>
+            <input type="text" th:field="*{street}" id="street" placeholder="Street" class="form-control mb-4 col-4">
+            <label for="city">City</label>
+            <input type="text" th:field="*{city}" id="city" placeholder="City" class="form-control mb-4 col-4">
+            <label for="zipcode">Zipcode</label>
+            <input type="text" th:field="*{zipcode}" id="zipcode" placeholder="Zipcode" class="form-control mb-4 col-4">
+            <label for="country">Country</label>
+            <input type="text" th:field="*{country}" id="country" placeholder="Country" class="form-control mb-4 col-4">
+
+            <button type="submit" class="btn btn-primary col-2">Sign up</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
