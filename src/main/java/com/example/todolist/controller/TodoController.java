@@ -28,7 +28,7 @@ public class TodoController {
     private final TodoService todoService;
     private final UserService userService;
 
-    @GetMapping("/getAll")
+    @GetMapping("/todos")
     public String getTodoList(
             Model model,
             @RequestParam(defaultValue = "1") @Min(1) int page,
@@ -56,18 +56,21 @@ public class TodoController {
         return "home";
     }
 
-    @GetMapping("/new")
+    @GetMapping("/todo")
     public String getCreationForm(Model model) {
         //TODO Persist username & completed selection between submissions
+
         model.addAttribute("userList", userService.findAll());
         model.addAttribute("newTodo", new NewTodoDto());
         return "todo-submit";
     }
 
-    @PostMapping("/new")
+    @PostMapping("/todo")
     public String postCreationForm(@Valid NewTodoDto todoDto, Model model) {
         todoService.createTodo(todoDto);
-        return "redirect:/todo/new";
+        return "redirect:/todo/todo";
     }
+
+
 
 }
