@@ -16,13 +16,13 @@
                    th:value="${titleFilter}"/>
             <input type="text" name="usernameFilter" placeholder="Filter by Username"
                    th:value="${usernameFilter}"/>
-            <button type="submit" class="btn btn-secondary">Buscar</button>
-            <a th:href="@{/todo/getAll(size=${todoPage.size}, page=${pageNumber}, sort=${currentSort})}" class="btn btn-secondary"> Limpiar </a>
+            <button type="submit" class="btn btn-secondary">Filter</button>
+            <a th:href="@{/todo/getAll(size=${todoPage.size}, page=${pageNumber}, sort=${currentSort})}" class="btn btn-secondary"> Clear </a>
         </form>
     </div>
 
     <div th:switch="${todoPage}">
-        <h2 th:case="null">No se han encontrado tareas!</h2>
+        <h2 th:case="null">No tasks found!</h2>
         <div th:case="*">
             <h2>TODO List</h2>
             <div class="row">
@@ -30,10 +30,10 @@
                     <table class="table table-striped table-responsive-md">
                         <thead>
                         <tr>
-                            <th><a th:href="@{/todo/getAll(size=${todoPage.size}, page=${todoPage.number} + 1, sort='title')}">Título</a></th>
-                            <th><a th:href="@{/todo/getAll(size=${todoPage.size}, page=${todoPage.number} + 1, sort='user.username')}">Usuario</a></th>
-                            <th><a th:href="@{/todo/getAll(size=${todoPage.size}, page=${todoPage.number} + 1, sort='user.address.country')}">País</a></th>
-                            <th><a th:href="@{/todo/getAll(size=${todoPage.size}, page=${todoPage.number} + 1, sort='completed')}">Completada</a></th>
+                            <th><a th:href="@{/todo/getAll(size=${todoPage.size}, page=${todoPage.number} + 1, sort='title')}">Title</a></th>
+                            <th><a th:href="@{/todo/getAll(size=${todoPage.size}, page=${todoPage.number} + 1, sort='user.username')}">Username</a></th>
+                            <th><a th:href="@{/todo/getAll(size=${todoPage.size}, page=${todoPage.number} + 1, sort='user.address.country')}">Country</a></th>
+                            <th><a th:href="@{/todo/getAll(size=${todoPage.size}, page=${todoPage.number} + 1, sort='completed')}">Completed</a></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -41,7 +41,7 @@
                             <td th:text="${todo.title}"></td>
                             <td th:text="${todo.username}"></td>
                             <td th:text="${todo.country}"></td>
-                            <td th:text="${todo.completed} ? 'Completada' : 'No completada'"></td>
+                            <td th:text="${todo.completed} ? 'Completed' : 'Not completed'"></td>
                         </tr>
                         </tbody>
                     </table>
