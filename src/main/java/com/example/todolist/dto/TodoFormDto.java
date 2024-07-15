@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class NewTodoDto {
+public class TodoFormDto {
+    private long id;
     @Min(value = 1)
     private long userId;
     @NotBlank

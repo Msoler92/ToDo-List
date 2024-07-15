@@ -1,7 +1,7 @@
 package com.example.todolist.controller;
 
-import com.example.todolist.dto.NewTodoDto;
-import com.example.todolist.dto.TodoDto;
+import com.example.todolist.dto.TodoFormDto;
+import com.example.todolist.dto.TodoDataDto;
 import com.example.todolist.service.TodoService;
 import com.example.todolist.service.UserService;
 import jakarta.validation.Valid;
@@ -11,10 +11,7 @@ import org.springframework.data.domain.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -38,7 +35,7 @@ public class TodoController {
             @RequestParam(required = false) String usernameFilter
     ) {
         Pageable pageRequest = PageRequest.of(page - 1, size, Sort.by(sort));
-        Page<TodoDto> pageResult;
+        Page<TodoDataDto> pageResult;
         if (titleFilter != null && titleFilter.trim().isEmpty()) {
             titleFilter = null;
         }
@@ -61,14 +58,24 @@ public class TodoController {
         //TODO Persist username & completed selection between submissions
 
         model.addAttribute("userList", userService.findAll());
-        model.addAttribute("newTodo", new NewTodoDto());
+        model.addAttribute("newTodo", new TodoFormDto());
+        return "todo-submit";
+    }
+
+    @GetMapping("/todo/{id}")
+    public String getModificationForm(Model model, @PathVariable long id) {
+        model.addAttribute("userList", userService.findAll());
+        model.addAttribute("newTodo", todoService.findById(id));
         return "todo-submit";
     }
 
     @PostMapping("/todo")
-    public String postCreationForm(@Valid NewTodoDto todoDto, Model model) {
+    public String postCreationForm(@Valid TodoFormDto todoDto, Model model) {
         todoService.createTodo(todoDto);
-        return "redirect:/todo/todo";
+        if(todoDto.getId() == 0) {
+            return "redirect:/todo/todo";
+        }
+        return "redirect:/todo/todos";
     }
 
 
