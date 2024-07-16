@@ -42,7 +42,7 @@ public class TodoController {
         if (usernameFilter != null && usernameFilter.trim().isEmpty()) {
             usernameFilter = null;
         }
-        //TODO Verify case pageresult = null for proper Thymeleaf switch display
+
         pageResult = todoService.findAll(Optional.ofNullable(titleFilter), Optional.ofNullable(usernameFilter), pageRequest);
         List<Integer> pageIndex = IntStream.rangeClosed(1, pageResult.getTotalPages()).boxed().toList();
         model.addAttribute("todoPage", pageResult);
@@ -63,7 +63,7 @@ public class TodoController {
     }
 
     @PostMapping("/todo")
-    public String postCreationForm(@Valid TodoFormDto todoDto, Model model) {
+    public String postTodo(@Valid TodoFormDto todoDto, Model model) {
         todoService.createTodo(todoDto);
         if(todoDto.getId() == 0) {
             return "redirect:/todo/todo";
