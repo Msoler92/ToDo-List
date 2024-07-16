@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Collections;
 
 @Entity
 @Data
@@ -21,6 +22,7 @@ public class User implements UserDetails {
     @Column(name = "user_id")
     private long id;
     private String name;
+    @Column(unique=true)
     private String username;
     private String password;
     @OneToOne(cascade = CascadeType.ALL)
@@ -29,6 +31,6 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return Collections.emptyList();
     }
 }

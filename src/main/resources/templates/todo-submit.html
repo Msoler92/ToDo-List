@@ -11,14 +11,18 @@
 <body>
 <div class="container mt-4">
     <div>
-        <form action="#" th:action="@{/todo/todo}" th:object="${newTodo}" method="post" id="submitTodoForm">
+        <form action="#" th:action="@{/todo/todo}" th:object="${todoFormDto}" method="post" id="submitTodoForm">
             <input type="hidden" th:field="*{id}" id="id" class="form-control mb-4 col-4">
+
             <label for="userId">User</label>
             <select class="form-control" name="userId" id="userId">
                 <option th:each="user:${userList}" th:value="${user.id}" th:text="${user.username}" th:selected="${user.username == #authentication.name}"></option>
             </select>
+
             <label for="title">Title</label>
             <input type="text" th:field="*{title}" id="title" placeholder="Title" class="form-control mb-4 col-4">
+            <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"></p>
+
             <label for="completed">Completed</label>
             <select class="form-control" th:field="*{completed}" id="completed">
                 <option th:value="True">Completed</option>
@@ -27,6 +31,10 @@
             <hr>
             <button type="submit" class="btn btn-primary col-2">Add</button>
             <a th:href="@{/todo/todos}" class="btn btn-secondary">Back</a>
+
+            <div th:if="${errorMessage}" class="alert alert-danger mt-4">
+                <p th:text="${errorMessage}"></p>
+            </div>
         </form>
     </div>
 </div>

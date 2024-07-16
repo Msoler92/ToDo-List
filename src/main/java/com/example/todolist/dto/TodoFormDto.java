@@ -12,8 +12,8 @@ public class TodoFormDto {
     private long id;
     @Min(value = 1)
     private long userId;
-    @NotBlank
-    @Size(min = 1, max = 200)
+    @NotBlank(message = "Title should not be blank")
+    @Size(min = 1, max = 200, message="Title should be between 1 and 200 characters long")
     private String title;
     private boolean completed;
 }
