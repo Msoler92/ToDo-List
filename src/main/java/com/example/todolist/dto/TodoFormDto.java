@@ -13,7 +13,7 @@ public class TodoFormDto {
     @Min(value = 1)
     private long userId;
     @NotBlank(message = "Title should not be blank")
-    @Size(min = 1, max = 200, message="Title should be between 1 and 200 characters long")
+    @Size(min = 1, max = 199, message="Title should be between 1 and 199 characters long")
     private String title;
     private boolean completed;
 }
