@@ -10,6 +10,6 @@ import java.util.List;
 @Service
 public interface UserService extends UserDetailsService {
     List<UserDto> findAll();
-
     UserDto save(UserFormDto userDto);
+    boolean existsByUsername(String username);
 }
