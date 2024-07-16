@@ -7,12 +7,19 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
           crossorigin="anonymous">
+    <script type="text/javascript">
+        function confirmDeletion(id) {
+            if (confirm("Are you sure? This operation cannot be undone")) {
+                document.getElementById('delete-form-' + id).submit();
+            }
+        }
+    </script>
 </head>
 <body>
 <div class="container mt-4">
     <div sec:authorize="!isAuthenticated()">
-        <a th:href="@{/login}" class="btn btn-secondary float-right">Login</a>
-        <a th:href="@{/signup}" class="btn btn-primary float-right">Sign Up</a>
+        <a th:href="@{/login}" class="btn btn-secondary float-right d-inline-block mr-2">Login</a>
+        <a th:href="@{/signup}" class="btn btn-primary float-right d-inline-block mr-2">Sign Up</a>
     </div>
     <div sec:authorize="isAuthenticated()">
         <a th:href="@{/logout}" class="btn btn-secondary float-right">Sign Out</a>
@@ -51,8 +58,10 @@
                             <td th:text="${todo.completed} ? 'Completed' : 'Not completed'"></td>
                             <td>
                                 <div th:if="${#authentication.name == todo.username}">
-                                    <a th:href="@{/todo/todo/{id}(id=${todo.id})}" class="btn btn-primary">Edit</a>
-                                    <a th:href="@{/todo/todo/{id}/delete(id=${todo.id})}" class="btn btn-danger">Delete</a>
+                                    <a th:href="@{/todo/todo/{id}(id=${todo.id})}" class="btn btn-primary d-inline-block mr-2">Edit</a>
+                                    <form th:action="@{/todo/todo/{id}/delete(id=${todo.id})}" th:method="post" th:id="'delete-form-' + ${todo.id}"  class="d-inline-block">
+                                        <button type="button" class="btn btn-danger" th:onclick="confirmDeletion([[${todo.id}]])">Delete</button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>
