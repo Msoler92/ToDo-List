@@ -49,7 +49,11 @@
                             <td th:text="${todo.username}"></td>
                             <td th:text="${todo.country}"></td>
                             <td th:text="${todo.completed} ? 'Completed' : 'Not completed'"></td>
-                            <td><a th:href="@{/todo/todo/{id}(id=${todo.id})}" class="btn btn-primary">Edit</a></td>
+                            <td>
+                                <div th:if="${#authentication.name == todo.username}">
+                                    <a th:href="@{/todo/todo/{id}(id=${todo.id})}" class="btn btn-primary">Edit</a>
+                                </div>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
