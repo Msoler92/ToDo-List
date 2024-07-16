@@ -8,11 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 
 @Controller
-@RequestMapping("/user")
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
@@ -25,10 +22,9 @@ public class UserController {
 
     @PostMapping("/signup")
     public String signup(Model model, UserFormDto dto) {
-        String encodedPasword = passwordEncoder.encode(dto.getPassword());
-        dto.setPassword(encodedPasword);
+        String encodedPassword = passwordEncoder.encode(dto.getPassword());
+        dto.setPassword(encodedPassword);
         userService.save(dto);
         return "redirect:/todo/todos";
     }
-
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="utf-8">
     <title>TODO List</title>
@@ -10,6 +10,13 @@
 </head>
 <body>
 <div class="container mt-4">
+    <div sec:authorize="!isAuthenticated()">
+        <a th:href="@{/login}" class="btn btn-secondary float-right">Login</a>
+        <a th:href="@{/signup}" class="btn btn-primary float-right">Sign Up</a>
+    </div>
+    <div sec:authorize="isAuthenticated()">
+        <a th:href="@{/logout}" class="btn btn-secondary float-right">Sign Out</a>
+    </div>
     <div>
         <form action="#" th:action="@{/todo/todos}" method="get">
             <input type="text" name="titleFilter" placeholder="Filter by Title"
@@ -20,7 +27,6 @@
             <a th:href="@{/todo/todos(size=${todoPage.size}, page=${pageNumber}, sort=${currentSort})}" class="btn btn-secondary"> Clear </a>
         </form>
     </div>
-
     <div th:switch="${todoPage}">
         <h2 th:case="null">No tasks found!</h2>
         <div th:case="*">
