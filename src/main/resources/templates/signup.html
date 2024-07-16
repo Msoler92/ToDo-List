@@ -11,7 +11,7 @@
 <body>
 <div class="container mt-4">
     <div>
-        <form action="#" th:action="@{/user/signup}" th:object="${user}" method="post" id="submitTodoForm">
+        <form action="#" th:action="@{/signup}" th:object="${user}" method="post" id="submitTodoForm">
             <label for="name">Full name</label>
             <input type="text" th:field="*{name}" id="name" placeholder="Name" class="form-control mb-4 col-4">
             <label for="username">Username</label>
