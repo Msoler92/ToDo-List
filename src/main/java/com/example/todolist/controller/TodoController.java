@@ -76,8 +76,9 @@ public class TodoController {
 
     @GetMapping("/todo/{id}")
     public String getModificationForm(Model model, @PathVariable long id) {
+        TodoFormDto todoFormDto = todoService.findById(id);
         model.addAttribute("userList", userService.findAll());
-        model.addAttribute("todoFormDto", todoService.findById(id));
+        model.addAttribute("todoFormDto", todoFormDto   );
         return TODO_FORM_SUBMISSION_PAGE;
     }
 

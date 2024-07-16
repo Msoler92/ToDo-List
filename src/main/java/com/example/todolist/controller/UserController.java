@@ -39,6 +39,6 @@ public class UserController {
         String encodedPassword = passwordEncoder.encode(userFormDto.getPassword());
         userFormDto.setPassword(encodedPassword);
         userService.save(userFormDto);
-        return "redirect:/todo/todos";
+        return "signup-success";
     }
 }
