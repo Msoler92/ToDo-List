@@ -14,8 +14,8 @@
         <form action="#" th:action="@{/todo/todo}" th:object="${newTodo}" method="post" id="submitTodoForm">
             <input type="hidden" th:field="*{id}" id="id" class="form-control mb-4 col-4">
             <label for="userId">User</label>
-            <select class="form-control" th:field="*{userId}" id="userId">
-                <option th:each="user:${userList}" th:value="${user.id}" th:text="${user.username}"></option>
+            <select class="form-control" name="userId" id="userId">
+                <option th:each="user:${userList}" th:value="${user.id}" th:text="${user.username}" th:selected="${user.username == #authentication.name}"></option>
             </select>
             <label for="title">Title</label>
             <input type="text" th:field="*{title}" id="title" placeholder="Title" class="form-control mb-4 col-4">

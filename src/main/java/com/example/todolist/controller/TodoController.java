@@ -55,8 +55,6 @@ public class TodoController {
 
     @GetMapping("/todo")
     public String getCreationForm(Model model) {
-        //TODO Persist username & completed selection between submissions
-
         model.addAttribute("userList", userService.findAll());
         model.addAttribute("newTodo", new TodoFormDto());
         return "todo-submit";
