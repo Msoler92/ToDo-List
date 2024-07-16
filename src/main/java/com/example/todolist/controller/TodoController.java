@@ -65,7 +65,6 @@ public class TodoController {
     @PostMapping("/todo")
     public String postTodo(@Valid @ModelAttribute TodoFormDto todoFormDto, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            bindingResult.getAllErrors().forEach(error -> System.out.println(error.toString()));
             model.addAttribute("userList", userService.findAll());
             model.addAttribute("todoFormDto", todoFormDto);
             model.addAttribute("errorMessage", "Invalid data");
