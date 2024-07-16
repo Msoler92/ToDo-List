@@ -86,6 +86,4 @@ public class TodoController {
         todoService.delete(id);
         return "redirect:/todo/todos";
     }
-
-
 }
