@@ -15,7 +15,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/todo/todo/{id}","/todo/todo/{id}/delete").authenticated()
+                        .requestMatchers("/todo/todo/update","/todo/todo/delete").authenticated()
                         .anyRequest().permitAll()
                 )
                 .formLogin(login ->
