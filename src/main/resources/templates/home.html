@@ -58,8 +58,12 @@
                             <td th:text="${todo.completed} ? 'Completed' : 'Not completed'"></td>
                             <td>
                                 <div th:if="${#authentication.name == todo.username}">
-                                    <a th:href="@{/todo/todo/{id}(id=${todo.id})}" class="btn btn-primary d-inline-block mr-2">Edit</a>
-                                    <form th:action="@{/todo/todo/{id}/delete(id=${todo.id})}" th:method="post" th:id="'delete-form-' + ${todo.id}"  class="d-inline-block">
+                                    <form th:action="@{/todo/todo/update}" th:method="post" th:id="'edit-form-' + ${todo.id}"  class="d-inline-block">
+                                        <input type="hidden" name="id" th:value="${todo.id}" />
+                                        <button type="submit" class="btn btn-primary">Edit</button>
+                                    </form>
+                                    <form th:action="@{/todo/todo/delete}" th:method="post" th:id="'delete-form-' + ${todo.id}"  class="d-inline-block">
+                                        <input type="hidden" name="id" th:value="${todo.id}" />
                                         <button type="button" class="btn btn-danger" th:onclick="confirmDeletion([[${todo.id}]])">Delete</button>
                                     </form>
                                 </div>
