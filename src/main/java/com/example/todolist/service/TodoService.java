@@ -11,7 +11,8 @@ import java.util.Optional;
 public interface TodoService {
     Page<TodoDataDto> findAll(Optional<String> title, Optional<String> username, Pageable pageable);
     TodoDataDto createTodo(TodoFormDto todoDto);
-
     TodoFormDto findById(long id);
+
+    TodoDataDto delete(long id);
 
 }

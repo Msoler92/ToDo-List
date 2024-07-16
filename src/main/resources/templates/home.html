@@ -52,6 +52,7 @@
                             <td>
                                 <div th:if="${#authentication.name == todo.username}">
                                     <a th:href="@{/todo/todo/{id}(id=${todo.id})}" class="btn btn-primary">Edit</a>
+                                    <a th:href="@{/todo/todo/{id}/delete(id=${todo.id})}" class="btn btn-danger">Delete</a>
                                 </div>
                             </td>
                         </tr>

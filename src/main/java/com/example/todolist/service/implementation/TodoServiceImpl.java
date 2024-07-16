@@ -53,4 +53,13 @@ public class TodoServiceImpl implements TodoService {
         return converter.map(todoRepository.findById(id).orElse(new Todo()), TodoFormDto.class);
     }
 
+    @Override
+    public TodoDataDto delete(long id) {
+        Optional<Todo> todo = todoRepository.findById(id);
+        if(todo.isPresent()) {
+            todoRepository.deleteById(id);
+        }
+        return converter.map(todo.orElse(new Todo()), TodoDataDto.class);
+    }
+
 }

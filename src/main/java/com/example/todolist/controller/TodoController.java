@@ -62,13 +62,6 @@ public class TodoController {
         return "todo-submit";
     }
 
-    @GetMapping("/todo/{id}")
-    public String getModificationForm(Model model, @PathVariable long id) {
-        model.addAttribute("userList", userService.findAll());
-        model.addAttribute("newTodo", todoService.findById(id));
-        return "todo-submit";
-    }
-
     @PostMapping("/todo")
     public String postCreationForm(@Valid TodoFormDto todoDto, Model model) {
         todoService.createTodo(todoDto);
@@ -78,6 +71,18 @@ public class TodoController {
         return "redirect:/todo/todos";
     }
 
+    @GetMapping("/todo/{id}")
+    public String getModificationForm(Model model, @PathVariable long id) {
+        model.addAttribute("userList", userService.findAll());
+        model.addAttribute("newTodo", todoService.findById(id));
+        return "todo-submit";
+    }
+
+    @GetMapping("/todo/{id}/delete")
+    public String deleteTodo(Model model, @PathVariable long id) {
+        todoService.delete(id);
+        return "redirect:/todo/todos";
+    }
 
 
 }
