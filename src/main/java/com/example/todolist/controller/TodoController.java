@@ -77,7 +77,7 @@ public class TodoController {
     public String getModificationForm(Model model, long id) {
         TodoFormDto todoFormDto = todoService.findById(id);
         model.addAttribute("userList", userService.findAll());
-        model.addAttribute("todoFormDto", todoFormDto   );
+        model.addAttribute("todoFormDto", todoFormDto);
         return TODO_FORM_SUBMISSION_PAGE;
     }
 

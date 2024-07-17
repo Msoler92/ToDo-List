@@ -1,5 +1,6 @@
 package com.example.todolist.dto;
 
+import com.example.todolist.validation.UniqueUsername;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,7 @@ public class UserFormDto {
     @NotBlank (message = NOT_BLANK_ERROR)
     private String name;
     @NotBlank (message = NOT_BLANK_ERROR)
+    @UniqueUsername
     private String username;
     @NotBlank (message = NOT_BLANK_ERROR)
     private String password;
