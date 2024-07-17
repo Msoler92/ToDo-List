@@ -27,7 +27,7 @@ public class TodoController {
     private static final String HOME_PAGE = "home";
     private static final String TODO_FORM_SUBMISSION_PAGE = "todo-submit";
 
-    @GetMapping("/todos")
+    @GetMapping({"", "/todos"})
     public String getTodoList(
             Model model,
             @RequestParam(defaultValue = "1") @Min(1) int page,

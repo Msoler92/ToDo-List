@@ -47,3 +47,14 @@ mvn clean package
 java -jar target/ToDoList-0.0.1-SNAPSHOT.jar
 ```
 For both options, you can use the Maven Wrapper instead: call `mvnw` or `./mvnw` (depending on your OS) instead of `mvn`.
+
+### 4. View it in your browser
+
+Open your favourite internet browser and go to `localhost:9000/todo`. You will see the application's main screen. From there you can:
+- Sign up as a new user.
+- Login as an existing user.
+- Create and view ToDos.
+- Filter the list of ToDos by Username (exact match) and/or title (partial match).
+- Order the list by any of the columns.
+- Edit and Delete existing ToDos (only those assigned to your username - requires being logged in).
+- Logout.
