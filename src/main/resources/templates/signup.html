@@ -22,7 +22,7 @@
             <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger"></p>
 
             <label for="password">Password</label>
-            <input type="text" th:field="*{password}" id="password" placeholder="Password" class="form-control mb-4 col-4">
+            <input type="password" th:field="*{password}" id="password" placeholder="Password" class="form-control mb-4 col-4">
             <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></p>
             <hr>
             <p>Address</p>
