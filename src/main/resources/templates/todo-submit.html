@@ -35,6 +35,9 @@
             <div th:if="${errorMessage}" class="alert alert-danger mt-4">
                 <p th:text="${errorMessage}"></p>
             </div>
+            <div th:if="${successMessage}" class="alert alert-success mt-4">
+                <p th:text="${successMessage}"></p>
+            </div>
         </form>
     </div>
 </div>

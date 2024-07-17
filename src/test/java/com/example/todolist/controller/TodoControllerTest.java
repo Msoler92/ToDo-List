@@ -87,6 +87,7 @@ class TodoControllerTest {
                 .with(csrf()))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/todo/todo"))
+                .andExpect(flash().attributeExists("successMessage"))
         ;
 
         verify(todoService).createTodo(any(TodoFormDto.class));

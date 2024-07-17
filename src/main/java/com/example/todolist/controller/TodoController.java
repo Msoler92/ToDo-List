@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,7 +28,7 @@ public class TodoController {
     private static final String HOME_PAGE = "home";
     private static final String TODO_FORM_SUBMISSION_PAGE = "todo-submit";
 
-    @GetMapping({"", "/todos"})
+    @GetMapping({"","/", "/todos"})
     public String getTodoList(
             Model model,
             @RequestParam(defaultValue = "1") @Min(1) int page,
@@ -62,7 +63,7 @@ public class TodoController {
     }
 
     @PostMapping("/todo")
-    public String postTodo(@Valid @ModelAttribute TodoFormDto todoFormDto, BindingResult bindingResult, Model model) {
+    public String postTodo(@Valid @ModelAttribute TodoFormDto todoFormDto, BindingResult bindingResult, Model model, RedirectAttributes ra) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("userList", userService.findAll());
             model.addAttribute("todoFormDto", todoFormDto);
@@ -70,6 +71,7 @@ public class TodoController {
             return TODO_FORM_SUBMISSION_PAGE;
         }
         todoService.createTodo(todoFormDto);
+        ra.addFlashAttribute("successMessage", "Data saved!");
         return todoFormDto.getId() == 0 ? "redirect:/todo/todo" : "redirect:/todo/todos";
     }
 
