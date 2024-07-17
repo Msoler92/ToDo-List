@@ -69,10 +69,17 @@ class UserControllerTest {
     @Test
     void testSignup_UsernameExists() throws Exception {
         UserFormDto userFormDto = new UserFormDto();
-        userFormDto.setUsername("existinguser");
+        userFormDto.setName("existinguser");
+        userFormDto.setUsername("testuser");
         userFormDto.setPassword("password");
+        userFormDto.setStreet("street");
+        userFormDto.setCity("city");
+        userFormDto.setZipcode("zipcode");
+        userFormDto.setCountry("country");
 
         when(userService.existsByUsername(userFormDto.getUsername())).thenReturn(true);
+        when(userService.findAll()).thenReturn(Collections.emptyList());
+
 
         mockMvc.perform(post("/signup")
                         .flashAttr("userFormDto", userFormDto)
